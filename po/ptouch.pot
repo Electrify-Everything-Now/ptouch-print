@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ptouch-print\n"
 "Report-Msgid-Bugs-To: dominic@familie-radermacher.ch\n"
-"POT-Creation-Date: 2026-07-18 08:07+0200\n"
+"POT-Creation-Date: 2026-09-08 07:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,325 +17,325 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/libptouch.c:123 src/libptouch.c:127 src/libptouch.c:131
+#: src/libptouch.c:124 src/libptouch.c:128 src/libptouch.c:132
 #, c-format
 msgid "out of memory\n"
 msgstr ""
 
-#: src/libptouch.c:135
+#: src/libptouch.c:136
 #, c-format
 msgid "libusb_init() failed\n"
 msgstr ""
 
-#: src/libptouch.c:144
+#: src/libptouch.c:145
 #, c-format
 msgid "failed to get device descriptor"
 msgstr ""
 
-#: src/libptouch.c:150
+#: src/libptouch.c:151
 #, c-format
 msgid "%s found on USB bus %d, device %d\n"
 msgstr ""
 
-#: src/libptouch.c:165
+#: src/libptouch.c:166
 #, c-format
 msgid "libusb_open error :%s\n"
 msgstr ""
 
-#: src/libptouch.c:171
+#: src/libptouch.c:172
 #, c-format
 msgid "error while detaching kernel driver: %s\n"
 msgstr ""
 
-#: src/libptouch.c:175
+#: src/libptouch.c:176
 #, c-format
 msgid "interface claim error: %s\n"
 msgstr ""
 
-#: src/libptouch.c:187
+#: src/libptouch.c:188
 #, c-format
 msgid ""
 "No P-Touch printer found on USB (remember to put switch to position E)\n"
 msgstr ""
 
-#: src/libptouch.c:207
+#: src/libptouch.c:208
 #, c-format
 msgid "debug: called ptouch_send() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:214
+#: src/libptouch.c:215
 #, c-format
 msgid "write error: %s\n"
 msgstr ""
 
-#: src/libptouch.c:218
+#: src/libptouch.c:219
 #, c-format
 msgid "write error: could send only %i of %ld bytes\n"
 msgstr ""
 
-#: src/libptouch.c:268
+#: src/libptouch.c:269
 #, c-format
 msgid "debug: called ptouch_info_cmd() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:310
+#: src/libptouch.c:311
 #, c-format
 msgid "debug: called ptouch_rasterstart() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:341
+#: src/libptouch.c:351
 #, c-format
 msgid "debug: called ptouch_finalize() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:356
+#: src/libptouch.c:366
 #, c-format
 msgid "debug: dumping raw status bytes\n"
 msgstr ""
 
-#: src/libptouch.c:375
+#: src/libptouch.c:385
 #, c-format
 msgid "debug: called ptouch_getstatus() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:385 src/libptouch.c:416
+#: src/libptouch.c:395 src/libptouch.c:426
 #, c-format
 msgid "read error: %s\n"
 msgstr ""
 
-#: src/libptouch.c:390
+#: src/libptouch.c:400
 #, c-format
 msgid "timeout (%i sec) while waiting for status response\n"
 msgstr ""
 
-#: src/libptouch.c:399
+#: src/libptouch.c:409
 #, c-format
 msgid "unknown tape width of %imm, please report this.\n"
 msgstr ""
 
-#: src/libptouch.c:405
+#: src/libptouch.c:415
 #, c-format
 msgid "got only 16 bytes... wondering what they are:\n"
 msgstr ""
 
-#: src/libptouch.c:409
+#: src/libptouch.c:419
 #, c-format
 msgid "read error: got %i instead of 32 bytes\n"
 msgstr ""
 
-#: src/libptouch.c:412
+#: src/libptouch.c:422
 #, c-format
 msgid "strange status:\n"
 msgstr ""
 
-#: src/libptouch.c:414
+#: src/libptouch.c:424
 #, c-format
 msgid "trying to flush junk\n"
 msgstr ""
 
-#: src/libptouch.c:419
+#: src/libptouch.c:429
 #, c-format
 msgid "got another %i bytes. now try again\n"
 msgstr ""
 
-#: src/libptouch.c:426
+#: src/libptouch.c:436
 #, c-format
 msgid "debug: called ptouch_get_dpi() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:435
+#: src/libptouch.c:445
 #, c-format
 msgid "debug: called ptouch_cal_tape_width() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:446
+#: src/libptouch.c:456
 #, c-format
 msgid "printer with %d dpi not supported\n"
 msgstr ""
 
-#: src/libptouch.c:466
+#: src/libptouch.c:476
 #, c-format
 msgid "debug: called ptouch_get_max_lines() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:470
+#: src/libptouch.c:480
 #, c-format
 msgid "debug: called ptouch_get_max_lines() with invalid fontsize_px\n"
 msgstr ""
 
-#: src/libptouch.c:473
+#: src/libptouch.c:483
 #, c-format
 msgid "debug: calculated max lines %d \n"
 msgstr ""
 
-#: src/libptouch.c:480
+#: src/libptouch.c:490
 #, c-format
 msgid "debug: called ptouch_get_tape_width() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:489
+#: src/libptouch.c:499
 #, c-format
 msgid "debug: called ptouch_get_max_width() with NULL ptdev\n"
 msgstr ""
 
-#: src/libptouch.c:504
+#: src/libptouch.c:514
 #, c-format
 msgid "debug: called ptouch_sendraster() with NULL ptdev\n"
 msgstr ""
 
-#: src/ptouch-print.c:176
+#: src/ptouch-print.c:186
 #, c-format
 msgid "nothing to print\n"
 msgstr ""
 
-#: src/ptouch-print.c:184
+#: src/ptouch-print.c:194
 #, c-format
 msgid "image is too large (%ipx x %ipx)\n"
 msgstr ""
 
-#: src/ptouch-print.c:185
+#: src/ptouch-print.c:195
 #, c-format
 msgid "maximum printing width for this tape is %ipx\n"
 msgstr ""
 
-#: src/ptouch-print.c:188
+#: src/ptouch-print.c:198
 #, c-format
 msgid "image size (%ipx x %ipx)\n"
 msgstr ""
 
-#: src/ptouch-print.c:204
+#: src/ptouch-print.c:214
 #, c-format
 msgid "ptouch_rasterstart() failed\n"
 msgstr ""
 
-#: src/ptouch-print.c:210
+#: src/ptouch-print.c:220
 #, c-format
 msgid "send print information command\n"
 msgstr ""
 
-#: src/ptouch-print.c:216
+#: src/ptouch-print.c:226
 #, c-format
 msgid "send PT-D460BT magic commands\n"
 msgstr ""
 
-#: src/ptouch-print.c:223
+#: src/ptouch-print.c:233
 #, c-format
 msgid "send precut command\n"
 msgstr ""
 
-#: src/ptouch-print.c:232
+#: src/ptouch-print.c:242
 #, c-format
 msgid "send PT-D460BT chain commands\n"
 msgstr ""
 
-#: src/ptouch-print.c:244
+#: src/ptouch-print.c:254
 #, c-format
 msgid "ptouch_sendraster() failed\n"
 msgstr ""
 
-#: src/ptouch-print.c:293
+#: src/ptouch-print.c:303
 #, c-format
 msgid "writing image '%s' failed\n"
 msgstr ""
 
-#: src/ptouch-print.c:298
+#: src/ptouch-print.c:308
 #, c-format
 msgid "printing '%s' requires %.1f mm of tape\n"
 msgstr ""
 
-#: src/ptouch-print.c:320
+#: src/ptouch-print.c:330
 #, c-format
 msgid "debug: z baseline offset - %d\n"
 msgstr ""
 
-#: src/ptouch-print.c:321
+#: src/ptouch-print.c:331
 #, c-format
 msgid "debug: text baseline offset - %d\n"
 msgstr ""
 
-#: src/ptouch-print.c:394
+#: src/ptouch-print.c:404
 #, c-format
 msgid "render_text(): %i lines, font = '%s', align = '%c'\n"
 msgstr ""
 
-#: src/ptouch-print.c:397
+#: src/ptouch-print.c:407
 #, c-format
 msgid "warning: font config not available\n"
 msgstr ""
 
-#: src/ptouch-print.c:401
+#: src/ptouch-print.c:411
 #, c-format
 msgid "setting font size=%i\n"
 msgstr ""
 
-#: src/ptouch-print.c:403
+#: src/ptouch-print.c:413
 #, c-format
 msgid "ignoring setting font margin=%i\n"
 msgstr ""
 
-#: src/ptouch-print.c:408
+#: src/ptouch-print.c:418
 #, c-format
 msgid "could not estimate needed font size\n"
 msgstr ""
 
-#: src/ptouch-print.c:415
+#: src/ptouch-print.c:425
 #, c-format
 msgid "choosing font size=%i\n"
 msgstr ""
 
-#: src/ptouch-print.c:431 src/ptouch-print.c:465
+#: src/ptouch-print.c:441 src/ptouch-print.c:475
 #, c-format
 msgid "error in gdImageStringFT_180dpi: %s\n"
 msgstr ""
 
-#: src/ptouch-print.c:622
+#: src/ptouch-print.c:632
 #, c-format
 msgid "Only up to %d lines are supported"
 msgstr ""
 
-#: src/ptouch-print.c:703
+#: src/ptouch-print.c:713
 msgid "No arguments supported"
 msgstr ""
 
-#: src/ptouch-print.c:708
+#: src/ptouch-print.c:718
 msgid "Option --writepng missing"
 msgstr ""
 
-#: src/ptouch-print.c:711
+#: src/ptouch-print.c:721
 msgid "Options --force_tape_width and --info can't be used together"
 msgstr ""
 
-#: src/ptouch-print.c:742
+#: src/ptouch-print.c:752
 #, c-format
 msgid "ptouch_init() failed\n"
 msgstr ""
 
-#: src/ptouch-print.c:745
+#: src/ptouch-print.c:761
 #, c-format
 msgid "ptouch_getstatus() failed\n"
 msgstr ""
 
-#: src/ptouch-print.c:759
+#: src/ptouch-print.c:775
 #, c-format
 msgid "printer has %d dpi, maximum printing width is %ld px\n"
 msgstr ""
 
-#: src/ptouch-print.c:760
+#: src/ptouch-print.c:776
 #, c-format
 msgid "maximum printing width for this tape is %ldpx\n"
 msgstr ""
 
-#: src/ptouch-print.c:785
+#: src/ptouch-print.c:801
 #, c-format
 msgid "failed to load image file\n"
 msgstr ""
 
-#: src/ptouch-print.c:794
+#: src/ptouch-print.c:810
 #, c-format
 msgid "could not render text\n"
 msgstr ""
 
-#: src/ptouch-print.c:835
+#: src/ptouch-print.c:851
 #, c-format
 msgid "ptouch_finalize(%d) failed\n"
 msgstr ""

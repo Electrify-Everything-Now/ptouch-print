@@ -66,7 +66,7 @@ struct _pt_dev_info ptdevs[] = {
 	/* Notes about the PT-1230PC: While it is true that this printer supports
 	   max 12mm tapes, it apparently expects > 76px data - the first 32px
 	   must be blank. */
-	{0x04f9, 0x202d, "PT-2430PC", 128, 180, FLAG_NONE, 0},		/* 180dpi, maximum 128px */
+	{0x04f9, 0x202d, "PT-2430PC", 128, 180, FLAG_HAS_PRECUT, 0},	/* 180dpi, maximum 128px. Same head width/dpi as PT-2700 (which has FLAG_HAS_PRECUT); confirmed precut works on real hardware. */
 	{0x04f9, 0x2030, "PT-1230PC (PLite Mode)", 128, 180, FLAG_PLITE, 0},
 	{0x04f9, 0x2031, "PT-2430PC (PLite Mode)", 128, 180, FLAG_PLITE, 0},
 	{0x04f9, 0x2041, "PT-2730", 128, 180, FLAG_NONE, 0},		/* 180dpi, maximum 128px, max tape width 24mm - reported to work with some quirks */
