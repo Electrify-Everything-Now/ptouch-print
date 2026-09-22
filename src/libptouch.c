@@ -181,6 +181,7 @@ int ptouch_open(ptouch_dev *ptdev)
 				(*ptdev)->devinfo->max_px=ptdevs[k].max_px;
 				(*ptdev)->devinfo->flags=ptdevs[k].flags;
 				(*ptdev)->devinfo->pin_offset=ptdevs[k].pin_offset;
+				(*ptdev)->devinfo->min_timeout=ptdevs[k].min_timeout;
 				return 0;
 			}
 		}
