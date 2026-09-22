@@ -107,6 +107,7 @@ struct _ptouch_dev {
 typedef struct _ptouch_dev *ptouch_dev;
 
 int ptouch_open(ptouch_dev *ptdev);
+int ptouch_open_serial(ptouch_dev *ptdev, const char *serial);
 int ptouch_close(ptouch_dev ptdev);
 int ptouch_send(ptouch_dev ptdev, uint8_t *data, size_t len);
 int ptouch_init(ptouch_dev ptdev);
@@ -130,6 +131,7 @@ int ptouch_rasterstart(ptouch_dev ptdev);
 int ptouch_sendraster(ptouch_dev ptdev, uint8_t *data, size_t len);
 void ptouch_rawstatus(uint8_t raw[32]);
 void ptouch_list_supported();
+int ptouch_list_connected();
 
 const char* pt_mediatype(unsigned char media_type);
 const char* pt_tapecolor(unsigned char tape_color);

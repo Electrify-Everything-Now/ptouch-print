@@ -113,6 +113,13 @@ struct _pt_dev_info ptdevs[] = {
 
 int ptouch_open(ptouch_dev *ptdev)
 {
+	return ptouch_open_serial(ptdev, NULL);
+}
+
+/* Like ptouch_open(), but when serial is not NULL only a printer whose
+   USB serial number matches it is used. */
+int ptouch_open_serial(ptouch_dev *ptdev, const char *serial)
+{
 	libusb_device **devs;
 	libusb_device *dev;
 	libusb_device_handle *handle = NULL;
@@ -148,22 +155,43 @@ int ptouch_open(ptouch_dev *ptdev)
 		}
 		for (int k=0; ptdevs[k].vid > 0; ++k) {
 			if ((desc.idVendor == ptdevs[k].vid) && (desc.idProduct == ptdevs[k].pid) && (ptdevs[k].flags >= 0)) {
-				fprintf(stderr, _("%s found on USB bus %d, device %d\n"),
+				unsigned char buf[64] = {0};
+				if ((r=libusb_open(dev, &handle)) != 0) {
+					fprintf(stderr, _("libusb_open error :%s\n"), libusb_error_name(r));
+					if (serial) {
+						/* can't read its serial, so it can't be the one we want */
+						break;
+					}
+					libusb_free_device_list(devs, 1);
+					return -1;
+				}
+				if (desc.iSerialNumber) {
+					libusb_get_string_descriptor_ascii(handle, desc.iSerialNumber, buf, sizeof(buf));
+				}
+				fprintf(stderr, _("%s found on USB bus %d, device %d, serial %s\n"),
 					ptdevs[k].name,
 					libusb_get_bus_number(dev),
-					libusb_get_device_address(dev));
+					libusb_get_device_address(dev),
+					buf[0] ? (char *)buf : "-");
+				/* check the serial before the P-Lite/unsupported checks, so
+				   a different printer in the wrong mode doesn't end the search */
+				if (serial && (strcmp((char *)buf, serial) != 0)) {
+					libusb_close(handle);
+					handle = NULL;
+					break;	/* next device */
+				}
 				if (ptdevs[k].flags & FLAG_PLITE) {
 					printf("Printer is in P-Lite Mode, which is unsupported\n\n");
 					printf("Turn off P-Lite mode by changing switch from position EL to position E\n");
 					printf("or by pressing the PLite button for ~ 2 seconds (or consult the manual)\n");
+					libusb_close(handle);
+					libusb_free_device_list(devs, 1);
 					return -1;
 				}
 				if (ptdevs[k].flags & FLAG_UNSUP_RASTER) {
 					printf("Unfortunately, that printer currently is unsupported (it has a different raster data transfer)\n");
-					return -1;
-				}
-				if ((r=libusb_open(dev, &handle)) != 0) {
-					fprintf(stderr, _("libusb_open error :%s\n"), libusb_error_name(r));
+					libusb_close(handle);
+					libusb_free_device_list(devs, 1);
 					return -1;
 				}
 				libusb_free_device_list(devs, 1);
@@ -186,7 +214,11 @@ int ptouch_open(ptouch_dev *ptdev)
 			}
 		}
 	}
-	fprintf(stderr, _("No P-Touch printer found on USB (remember to put switch to position E)\n"));
+	if (serial) {
+		fprintf(stderr, _("No P-Touch printer with serial %s found\n"), serial);
+	} else {
+		fprintf(stderr, _("No P-Touch printer found on USB (remember to put switch to position E)\n"));
+	}
 	libusb_free_device_list(devs, 1);
 	return -1;
 }
@@ -553,6 +585,57 @@ void ptouch_list_supported()
 	}
 	printf("\n");
 	return;
+}
+
+/* Print every connected P-Touch printer with its USB serial number, which
+   can then be passed to ptouch_open_serial(). Returns the number of
+   printers found, or -1 on error. */
+int ptouch_list_connected()
+{
+	libusb_device **devs;
+	libusb_device *dev;
+	libusb_device_handle *handle;
+	struct libusb_device_descriptor desc;
+	int r, i=0, found=0;
+
+	if ((libusb_init(NULL)) < 0) {
+		fprintf(stderr, _("libusb_init() failed\n"));
+		return -1;
+	}
+	if (libusb_get_device_list(NULL, &devs) < 0) {
+		libusb_exit(NULL);
+		return -1;
+	}
+	while ((dev=devs[i++]) != NULL) {
+		if (libusb_get_device_descriptor(dev, &desc) < 0) {
+			continue;
+		}
+		for (int k=0; ptdevs[k].vid > 0; ++k) {
+			if ((desc.idVendor == ptdevs[k].vid) && (desc.idProduct == ptdevs[k].pid) && (ptdevs[k].flags >= 0)) {
+				unsigned char buf[64] = {0};
+				const char *serial = "-";
+				if ((r=libusb_open(dev, &handle)) != 0) {
+					serial = libusb_error_name(r);
+				} else {
+					if (desc.iSerialNumber && (libusb_get_string_descriptor_ascii(handle, desc.iSerialNumber, buf, sizeof(buf)) > 0)) {
+						serial = (char *)buf;
+					}
+					libusb_close(handle);
+				}
+				printf(_("%s\tserial %s\t(USB bus %d, device %d)%s\n"),
+					ptdevs[k].name, serial,
+					libusb_get_bus_number(dev),
+					libusb_get_device_address(dev),
+					(ptdevs[k].flags & FLAG_PLITE) ? _(" - in P-Lite mode, unsupported") :
+					(ptdevs[k].flags & FLAG_UNSUP_RASTER) ? _(" - unsupported") : "");
+				++found;
+				break;
+			}
+		}
+	}
+	libusb_free_device_list(devs, 1);
+	libusb_exit(NULL);
+	return found;
 }
 
 const char* pt_mediatype(const uint8_t media_type)
